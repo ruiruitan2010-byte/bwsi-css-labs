@@ -29,14 +29,12 @@ def simple_calculator(operation: str, num1: float, num2: float) -> float:
         return num1 - num2
     elif operation == "multiply":
         return num1 * num2
-    elif operation == "divide":
+    else:
         if num2 != 0:
             return num1 / num2
         else:
             raise ValueError("Cannot divide by zero.")
-    else:
-        raise ValueError("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
-
+    
 def prompt_valid_number(message: str) -> float:
     """
     Continues to prompt the user with a provided message until the user provides a valid number
@@ -55,6 +53,26 @@ def prompt_valid_number(message: str) -> float:
             print("Please input a number")
     return num
 
+def prompt_valid_operation(message: str) -> str:
+    """
+    Continues to prompt the user with a provided message until the user provides a valid operation
+    
+    Args:
+        message (str): message to prompt the user with
+        
+    Returns:
+        str: the operation the user provides
+    """
+    
+    while True:
+        operation = input(message).strip().lower()
+        
+        if (operation == "add" or operation == "subtract" or operation == "multiply" or operation == "divide"):
+            return operation
+        
+        print("Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'.")
+        
+
 def main():
     
     print(f"===== Simple Calculator =====")
@@ -62,7 +80,7 @@ def main():
     # Ask the user for sample input    
     num1 = prompt_valid_number("Enter the first number: ")
     num2 = prompt_valid_number("Enter the second number: ")
-    operation = input("Enter the operation (add, subtract, multiply, divide): ").strip().lower()
+    operation = prompt_valid_operation("Enter the operation (add, subtract, multiply, divide): ")
 
     # Perform the calculation and display the result
     result = simple_calculator(operation, num1, num2)
