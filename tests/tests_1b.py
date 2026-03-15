@@ -37,5 +37,11 @@ def test_invalid_operation():
     with pytest.raises(ValueError, match="Invalid operation. Please choose from 'add', 'subtract', 'multiply', or 'divide'."):
         simple_calculator("", 5, 3)                     # Test for empty operation
 
+def test_decimals():
+    assert simple_calculator("add", 1.5, 7.3) == 8.8 # Test for adding decimals
+    assert simple_calculator("subtract", 10.4, 7.4) == 3 # Test for subtracting decimals
+    assert simple_calculator("multiply", 4, 1.7) == 6.8 # Test for multiplying decimals
+    assert simple_calculator("divide", 5, 4) == 1.25 # Test for dividing decimals
+
 if __name__ == "__main__":
     pytest.main()
